@@ -32,6 +32,16 @@
             <canvas id="canvas" ref="canvas" :style="{cursor:curcursor}"></canvas>
             <canvas id="canvas_bak" ref="canvas_bak" :style="{cursor:curcursor}"></canvas>
         </div>
+        <div style="display:flex; flex-direction: row; flex-grow: 1">
+          <div style="display:flex; flex-direction: column; flex-grow: 1">
+            <h3>input</h3>
+            <img width="80%" height="60%" src="../../input/1.png" />
+          </div>
+          <div style="display:flex; flex-direction: column; flex-grow: 1">
+            <h3>output</h3>
+            <img width="80%" height="60%" src="../../output/1.png" />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -39,6 +49,8 @@
 
 <script>
 import { Photoshop } from 'vue-color'
+// import { uploadPict } from '@/api/api'
+import axios from 'axios'
 
 export default {
   name: 'draw',
@@ -46,7 +58,7 @@ export default {
     return {
       canvasSize: {
         width: window.screen.availWidth - 320,
-        height: window.screen.availHeight * 0.75
+        height: window.screen.availHeight * 0.4
       },
       canvas: this.$refs.canvas,
       canvasTop: 67,
@@ -330,7 +342,51 @@ export default {
     },
     downloadImage () {
       this.$refs.download.href = this.canvas.toDataURL()
-      this.$refs.download.click()
+      // alert( this.canvas.toDataURL())
+      // this.$refs.download.click()
+      // var base64Data = this.canvas.toDataURL()
+      /*
+      var sendData = {}
+      sendData.pictData = this.canvas.toDataURL()
+      var sendJson = JSON.stringify(sendData)
+    
+      axios.post('http://drawstickserver.ngrok.io/v1/pict', sendJson).then(response=>{
+        sendJson = JSON.stringify(response.data, null, 4)
+      })*/
+      var bodyFormData = new FormData()
+      bodyFormData.append('pictData', this.canvas.toDataURL())
+      axios({
+        method: 'post',
+        url: 'http://drawstickserver.ngrok.io/v1/pict',
+        data: bodyFormData,
+        headers: {'Content-Type': 'multipart/form-data' }
+      })
+      .then(function (response) {
+        alert(response)
+      })
+      .catch(function (response) {
+        alert(response)
+      })
+      /*
+      this.$axios({
+        method: 'post',
+        url: 'http://drawstickserver.ngrok.io',
+        crossDomain: true,
+        data: sendJson
+      }).then(response=> {
+        var jsonData = JSON.stringify(response.data, null, 4);
+        this.result = jsonData
+      }).catch(function (error) {
+        this.result = 'filed!!'
+      }.bind(self))
+
+      let params = {
+        pictData: this.canvas.toDataURL()
+      }
+      uploadPict(params).then((data) => {
+        
+        alert(data)
+      })*/
     },
     cancel () {
       this.cancelIndex++
