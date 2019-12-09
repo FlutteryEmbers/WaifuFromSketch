@@ -1,0 +1,154 @@
+@import "common";
+@import "font-awesome";
+
+body {
+  padding: 0px;
+  margin: 0px auto;
+  font-size: 14px;
+  -webkit-print-color-adjust: exact; 
+}
+html, body, #app {
+  box-sizing: border-box;
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+a img {
+  border: 0;
+}
+
+#app {
+  font-family: Helvetica, Tahoma, Arial, PingFangSC, "苹方-简", "Microsoft YaHei", "微软雅黑", SimSun, "宋体", Heiti, "黑体", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: left;
+  color: #2c3e50;
+}
+// clear both
+.clearfix:before, .clearfix:after {
+  content: " ";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+.clear {
+  clear: both;
+}
+
+// 文字颜色
+.text-primary {
+  color: $--color-primary;
+}
+.text-success {
+  color: $--color-success
+}
+.text-warning{
+  color: $--color-warning;
+}
+.text-danger {
+  color: $--color-danger
+}
+.text-info {
+  color: $--color-info
+}
+
+.el-menu-item, .el-submenu__title{
+  font-size: 1.2em;
+}
+
+.pop-menu{
+  .el-menu {
+    background-color: #333744;
+  }
+  .el-menu-item, .el-submenu__title {
+    color: #fff;
+  }
+
+  .el-menu-item:hover, .el-submenu .el-menu-item:hover, .el-submenu__title:hover {
+    background-color: mix( #fff, #333744, 20%);
+    color: #fff;
+  }
+
+  i{
+    color: #fff;
+    padding-right: 8px;
+  }
+}
+
+
+.warp-breadcrum{
+  margin: 5px 10px 15px 0px;
+}
+
+/** 查询栏 **/
+.query-bar {
+  // @extend .bg-gray-lighter;
+  background-color: rgba(0, 0, 0, .05);
+  box-sizing: border-box;
+  // width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.main-content{
+  margin-bottom: 10px;
+}
+
+.tool-bar{
+  @extend .bg-gray-lighter;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+
+/** 打印主内容区 **/
+@media print {
+  html, body{
+    height: auto;
+    overflow-y: initial!important;
+  }
+  .topbar-wrap{
+    display: none;
+  }
+  .showSidebar{
+    display: none;
+  }
+  .container{
+    position: relative!important;
+  }
+  .main{
+    overflow: initial!important;
+    display: block!important;
+    position: relative!important;
+    top: 0!important;
+
+    .content-container{
+      box-sizing: border-box;
+      //width: 900px;
+      overflow-y: initial!important;
+      padding: 20px!important;
+      .grid-content:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+      }
+    }
+  }
+
+  // print common class
+  .no-print {
+    display: none;
+  }
+
+  .print-page-break{
+    page-break-after: always;
+  }
+}

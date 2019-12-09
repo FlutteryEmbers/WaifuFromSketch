@@ -1,0 +1,15 @@
+/** 颜色 **/
+$--color-primary: #25C6FC;
+$--color-success: #67c23a;
+$--color-warning: #FFBD10;
+$--color-danger: #FF401D;
+$--color-info: #909399;
+
+$--color-p1: lighten($--color-primary, 15%);
+$--color-p2: lighten($--color-success, 15%);
+$--color-p3: lighten($--color-warning, 15%);
+$--color-p4: lighten($--color-danger, 15%);
+// $p1: #70dafd;
+// $p2: #94d573;
+// $p3: #ffd25d;
+// $p4: #ff816a;
