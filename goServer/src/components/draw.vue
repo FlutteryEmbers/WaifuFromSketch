@@ -2,7 +2,7 @@
   <div class="layout">
     <div class="header">      
       <div class="logo">
-        <span>Drawing</span>
+        <span>Action Sketch Generator</span>
         </div>
       <div class="nav">
         <mu-flat-button v-for="tab in tabs" :key="tab.name" :label="tab.name" class="tab demo-flat-button" :icon="tab.icon" @click="tabfun(tab.fun)"  primary backgroundColor="#FFFFFF"/>
@@ -14,11 +14,11 @@
     <div class="content">
       <div class="content-left">
         <div class="setterSize">
-          <span>线条粗细:{{penSize}}</span>
+          <span>line width:{{penSize}}</span>
           <mu-slider v-model="penSize" :step="1" :max="30"/>
-          <span>虚线长度:{{lineType[0]}}</span>
+          <span>Dash Length:{{lineType[0]}}</span>
           <mu-slider v-model="lineType[0]" :step="1" :max="100"/>
-          <span>虚线间距:{{lineType[1]}}</span>
+          <span>Dash Space:{{lineType[1]}}</span>
           <mu-slider v-model="lineType[1]" :step="1" :max="100"/> 
         </div>
         <mu-paper>
@@ -61,7 +61,7 @@ export default {
       context_bak: null,
       ischoosecolor: false,
       toolsToggle: false,
-      chooseColorBtn: '选择颜色',
+      chooseColorBtn: 'choose color',
       color: {
         hex: '#2196f3',
         hsl: {
@@ -91,42 +91,42 @@ export default {
       cancelList: [],
       cancelIndex: 0,
       tools: [{
-          name: '铅笔',
+          name: 'pencil',
           icon: 'mode_edit',
           fun: 'pencil',
           ischoose: false,
         }, {
-          name: '直线',
+          name: 'straight line',
           icon: 'remove',
           fun: 'line',
           ischoose: false
         }, {
-          name: '圆形',
+          name: 'circle',
           icon: 'panorama_fish_eye',
           fun: 'circle',
           ischoose: false
         }, {
-          name: '矩形',
+          name: 'rectangle',
           icon: 'crop_square',
           fun: 'square',
           ischoose: false
         }, {
-          name: '涂鸦',
+          name: 'brush',
           icon: 'brush',
           fun: 'handwriting',
           ischoose: false
         }, {
-          name: '橡皮',
+          name: 'eraser',
           icon: 'border_style',
           fun: 'rubber',
           ischoose: false
         }],
       tabs: [{
-          name: '清除',
+          name: 'clear',
           icon: 'clear',
           fun: 'clear'
         }, {
-          name: '提交',
+          name: 'upload',
           icon: 'system_update_alt',
           fun: 'save'
         }]
@@ -343,10 +343,10 @@ export default {
         data: bodyFormData,
         headers: {'Content-Type': 'multipart/form-data' }
       })
-      .then(function (response) {
-        alert(response)
+      .then(function () {
+        alert("success!!")
         window.location.href = 'http://drawstickserver.ngrok.io/result.html'
-        window.open()
+        // window.open()
       })
       .catch(function (response) {
         alert(response)
@@ -482,14 +482,16 @@ canvas {
 }
 
 .header {
-  background-color: #2196f3;
+  background-color: #696969;
   position: relative;
   display: flex;
+  flex-grow: 1;
   align-items: center;
 }
 
 .logo {
   display: flex;
+  flex-grow: 1;
   align-items: center;
   font-size: 24px;
   color: white;
@@ -498,7 +500,7 @@ canvas {
 
 .nav {
   display: flex;
-  width: calc(100% - 150px);
+  width: calc(100% - 400px);
   margin: 0 auto;
 }
 

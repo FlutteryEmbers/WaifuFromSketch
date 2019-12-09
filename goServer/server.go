@@ -54,5 +54,5 @@ func getPicture(c *gin.Context) {
 		return
 	}
 	fmt.Println(resp)
-	c.JSON(200, gin.H{"Data": "1", "status": 200})
+	c.JSON(200, gin.H{"message": "Success", "status": 200})
 }
