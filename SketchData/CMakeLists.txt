@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 2.8)
+project( Sketch )
+find_package( OpenCV REQUIRED )
+add_executable( Sketch Sketch2.cpp )
+target_link_libraries( Sketch ${OpenCV_LIBS} )
